@@ -1,0 +1,3 @@
+spring.application.name: "Elephant Search"
+server:
+  port: 5000
