@@ -16,10 +16,10 @@ public ElephantRepository (){
                 .build();
 }
 
-    public String getResults(String query) {
+    public String getDefinition(String query) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
-                        .queryParam("", query)
+                        .path(query)
                         .build()
                 )
                 .retrieve()

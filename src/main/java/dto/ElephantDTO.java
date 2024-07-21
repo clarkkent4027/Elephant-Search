@@ -12,22 +12,14 @@ import javax.annotation.processing.Generated;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "definition",
-        "synonyms",
-        "antonyms",
-        "example"
+        "definition"
 })
 @Generated("jsonschema2pojo")
 public class ElephantDTO {
 
     @JsonProperty("definition")
     private String definition;
-    @JsonProperty("synonyms")
-    private List<Object> synonyms;
-    @JsonProperty("antonyms")
-    private List<Object> antonyms;
-    @JsonProperty("example")
-    private String example;
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -40,15 +32,4 @@ public class ElephantDTO {
     public void setDefinition(String definition) {
         this.definition = definition;
     }
-
-    @JsonProperty("synonyms")
-    public List<Object> getSynonyms() {
-        return synonyms;
-    }
-
-    @JsonProperty("synonyms")
-    public void setSynonyms(List<Object> synonyms) {
-        this.synonyms = synonyms;
-    }
-
 }
