@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ElephantService {
 
-    public String getResults(String query){
+    public String getDefinition(String query){
         return "Searching for definiton of " + query;
     }
 
