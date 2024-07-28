@@ -1,12 +1,16 @@
 package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.service;
 
+import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.ElephantRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ElephantService {
+    ElephantRepository eRepository = new ElephantRepository();
+
 
     public String getDefinition(String query){
-        return "Searching for definition of " + query;
+     return eRepository.getDefinition(query);
     }
+
 
 }

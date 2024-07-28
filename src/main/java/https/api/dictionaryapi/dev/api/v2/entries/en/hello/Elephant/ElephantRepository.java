@@ -17,6 +17,7 @@ public ElephantRepository (){
 }
 
     public String getDefinition(String query) {
+        /*
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path(query)
@@ -26,6 +27,16 @@ public ElephantRepository (){
                 .bodyToMono(ElephantDTO.class)
                 .block()
                 .getDefinition();
+
+         */
+        ElephantDTO i = webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(query)
+                        .build()
+                )
+                .retrieve()
+                .bodyToMono(ElephantDTO.class).block();
+        return i.getDefinition();
     }
 
 }
