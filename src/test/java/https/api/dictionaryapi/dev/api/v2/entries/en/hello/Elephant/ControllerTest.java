@@ -1,6 +1,5 @@
 package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant;
 
-
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.service.ElephantService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,7 @@ public class ControllerTest {
     void givenGoodQuery_whenGetDefinition_thenReturnDefinition() {
         //given
         String query = "computer";
-        String expectedResult = "Searching for definition of computer";
+        String expectedResult = "A person employed to perform computations; one who computes.";
 
         //when
         String actualResult = elephantController.getDefinition(query);

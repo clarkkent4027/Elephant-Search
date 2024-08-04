@@ -1,6 +1,8 @@
 package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant;
 
+import dto.Definition;
 import dto.ElephantDTO;
+import dto.Phonetic;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -16,7 +18,7 @@ public ElephantRepository (){
                 .build();
 }
 
-    public String getDefinition(String query) {
+    public String getDefinition(String query) throws AssertionError {
         /*
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
@@ -36,7 +38,7 @@ public ElephantRepository (){
                 )
                 .retrieve()
                 .bodyToMono(ElephantDTO.class).block();
-        return i.getDefinition();
+        return i.getMeanings().get(0).getDefinitions().get(0).getDefinition();
     }
 
 }

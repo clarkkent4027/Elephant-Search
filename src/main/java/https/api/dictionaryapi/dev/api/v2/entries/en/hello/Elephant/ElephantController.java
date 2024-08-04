@@ -1,5 +1,6 @@
 package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant;
 
+import dto.Phonetic;
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.service.ElephantService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,7 @@ public class ElephantController {
     @GetMapping("/searchElephantResults")
     public String getDefinition(@RequestParam(value="q") String query){
        String results = elephantService.getDefinition(query);
-       System.out.println(results);
-        if(results.isEmpty()){
+        if(results == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result(s) not found.");
         }
         return results;
