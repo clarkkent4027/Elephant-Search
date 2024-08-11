@@ -18,7 +18,7 @@ public class ServiceTest {
     void givenGoodQuery_whenGetDefinition_thenReturnDefinition() {
         //given
         String query = "computer";
-        String expectedResult = "";
+        String expectedResult = "A person employed to perform computations; one who computes.";
 
         //when
         String actualResult = elephantService.getDefinition(query);

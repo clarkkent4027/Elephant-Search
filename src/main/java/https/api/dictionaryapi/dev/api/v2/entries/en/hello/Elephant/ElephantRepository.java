@@ -1,10 +1,12 @@
 package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant;
 
-import dto.Definition;
 import dto.ElephantDTO;
-import dto.Phonetic;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
+import org.springframework.web.server.ResponseStatusException;
+import java.util.List;
 
 @Repository
 public class ElephantRepository {
@@ -18,8 +20,19 @@ public ElephantRepository (){
                 .build();
 }
 
-    public String getDefinition(String query) throws AssertionError {
-        /*
+    public String getDefinition(String query) throws WebClientResponseException.NotFound {
+        ParameterizedTypeReference<List<ElephantDTO>> tr = new ParameterizedTypeReference<List<ElephantDTO>>() {};
+        List<ElephantDTO> i = webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(query)
+                        .build()
+                )
+                .retrieve()
+                .bodyToMono(tr)
+                .block();
+        return i.get(0).getMeanings().get(0).getDefinitions().get(0).getDefinition();
+    }
+      /*
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path(query)
@@ -31,14 +44,4 @@ public ElephantRepository (){
                 .getDefinition();
 
          */
-        ElephantDTO i = webClient.get()
-                .uri(uriBuilder -> uriBuilder
-                        .path(query)
-                        .build()
-                )
-                .retrieve()
-                .bodyToMono(ElephantDTO.class).block();
-        return i.getMeanings().get(0).getDefinitions().get(0).getDefinition();
-    }
-
 }

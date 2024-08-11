@@ -22,7 +22,7 @@ public class ElephantController {
     public String getDefinition(@RequestParam(value="q") String query){
        String results = elephantService.getDefinition(query);
         if(results == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result(s) not found.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "404 Not Found");
         }
         return results;
     }

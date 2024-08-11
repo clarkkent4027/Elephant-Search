@@ -3,7 +3,7 @@ package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant;
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.service.ElephantService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.reactive.function.client.WebClientResponseException.NotFound;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -35,12 +35,12 @@ public class ControllerTest {
     @Test
     void givenBadQuery_whenGetDefinition_thenThrowsException() {
         //given
-        String query = "qwertyuijf6";
+        String query = "qwertyui11jf6";
 
         //when
         //then
-        Throwable exceptionThrown = assertThrows(ResponseStatusException.class, () -> elephantController.getDefinition(query));
-        assertEquals(exceptionThrown.getMessage(), "404 NOT_FOUND \"Result(s) not found.\"");
+        Throwable exceptionThrown = assertThrows(NotFound.class, () -> elephantController.getDefinition(query));
+
     }
 
 
