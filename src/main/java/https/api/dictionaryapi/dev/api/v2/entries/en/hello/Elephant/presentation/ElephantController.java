@@ -1,6 +1,5 @@
-package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant;
+package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.presentation;
 
-import dto.Phonetic;
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.service.ElephantService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

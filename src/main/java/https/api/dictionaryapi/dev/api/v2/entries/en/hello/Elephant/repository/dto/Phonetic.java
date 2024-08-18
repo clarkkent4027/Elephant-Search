@@ -1,4 +1,4 @@
-package dto;
+package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.repository.dto;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

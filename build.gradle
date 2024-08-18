@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '3.2.7'
 	id 'io.spring.dependency-management' version '1.1.5'
 	id 'org.asciidoctor.jvm.convert' version '3.3.2'
+	id 'idea'
 }
 
 group = 'https.api.dictionaryapi.dev.api.v2.entries.en.hello'
@@ -39,4 +40,43 @@ tasks.named('test') {
 tasks.named('asciidoctor') {
 	inputs.dir snippetsDir
 	dependsOn test
+}
+
+sourceSets {
+	intTest {
+		compileClasspath += sourceSets.main.output
+		runtimeClasspath += sourceSets.main.output
+	}
+}
+
+configurations {
+	intTestImplementation.extendsFrom implementation
+	intTestRunTimeOnly.extendsFrom runtimeOnly
+}
+
+task intTest(type: Test) {
+	useJUnitPlatform()
+	description = 'Runs the integration tests.'
+	group = 'verification'
+
+	testClassesDirs = sourceSets.intTest.output.classesDirs
+	classpath = sourceSets.intTest.runtimeClasspath
+	shouldRunAfter test
+}
+
+check.dependsOn intTest
+
+sourceSets {
+	intTest {
+		java {
+			srcDirs = ['src/intTest']
+		}
+	}
+}
+
+
+idea {
+	module {
+		testSources.from(sourceSets.intTest.java.srcDirs)
+	}
 }

@@ -1,11 +1,11 @@
-package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant;
+package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.repository;
 
-import dto.ElephantDTO;
+import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.repository.dto.ElephantDTO;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
-import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
 @Repository
