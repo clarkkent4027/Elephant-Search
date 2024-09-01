@@ -1,4 +1,4 @@
-package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.presentationTest;
+package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant;
 
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.presentation.HomeController;
 import static org.hamcrest.Matchers.containsString;
