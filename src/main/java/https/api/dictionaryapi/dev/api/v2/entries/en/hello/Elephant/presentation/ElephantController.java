@@ -21,7 +21,7 @@ public class ElephantController {
     public String getDefinition(@RequestParam(value="q") String query){
        String results = elephantService.getDefinition(query);
         if(results == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "404 Not Found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "404 NOT_FOUND");
         }
         return results;
     }

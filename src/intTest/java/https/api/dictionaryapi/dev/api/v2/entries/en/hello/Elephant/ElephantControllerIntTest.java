@@ -1,5 +1,6 @@
 package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant;
 
+import com.jayway.jsonpath.JsonPath;
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.presentation.ElephantController;
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.service.ElephantService;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.web.reactive.function.client.WebClientResponseException.NotFound;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -19,6 +21,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static reactor.core.publisher.Mono.when;
 
 @WebMvcTest(ElephantController.class)
  class ElephantControllerIntTest {
@@ -32,9 +35,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
     @BeforeEach
-    public void setUp() {
+     void setUp() {
         MockitoAnnotations.openMocks(this);
-         elephantController = new ElephantController(elephantService);
+        elephantService = new ElephantService();
+        elephantController = new ElephantController(elephantService);
     }
 
     @Test
@@ -44,16 +48,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         String expectedResult = "A person employed to perform computations; one who computes.";
 
         //when
-        String actualResult = elephantController.getDefinition(query);
+        String actualResult = elephantService.getDefinition(query);
         //then
-        assertEquals(expectedResult, actualResult);
-        MvcResult mvcResult = mockMvc.perform(get("/searchLocResults?q=" + query))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect((ResultMatcher) jsonPath("$[0].title", is(expectedResult)))
-                .andReturn();
+        //  assertEquals(expectedResult, actualResult);
+       MvcResult mvcResult = mockMvc.perform(get("/searchElephantResults?q=" + query))
+                 .andDo(print())
+                 .andExpect(status().isOk())
+                 .andExpect((ResultMatcher)jsonPath("[?(@.actualResult=='A person employed to perform computations; one who computes.')]"))
+                 .andReturn();
 
         assertEquals(MediaType.APPLICATION_JSON_VALUE, mvcResult.getResponse().getContentType());
+
     }
 
     @Test

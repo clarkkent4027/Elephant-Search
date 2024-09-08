@@ -77,7 +77,6 @@ sourceSets {
 	}
 }
 
-
 idea {
 	module {
 		testSources.from(sourceSets.intTest.java.srcDirs)
