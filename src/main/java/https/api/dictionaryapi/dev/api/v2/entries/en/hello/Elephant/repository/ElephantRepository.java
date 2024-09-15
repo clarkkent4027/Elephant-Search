@@ -1,5 +1,6 @@
 package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.repository;
 
+import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.repository.dto.Definition;
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.repository.dto.ElephantDTO;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,7 @@ public ElephantRepository (){
                 .build();
 }
 
-    public String getDefinition(String query) throws WebClientResponseException.NotFound {
+    public List<Definition> getDefinition(String query) throws WebClientResponseException.NotFound {
         ParameterizedTypeReference<List<ElephantDTO>> tr = new ParameterizedTypeReference<List<ElephantDTO>>() {};
         List<ElephantDTO> i = webClient.get()
                 .uri(uriBuilder -> uriBuilder
@@ -30,7 +31,7 @@ public ElephantRepository (){
                 .retrieve()
                 .bodyToMono(tr)
                 .block();
-        return i.get(0).getMeanings().get(0).getDefinitions().get(0).getDefinition();
+        return i.get(0).getMeanings().get(0).getDefinitions();
     }
       /*
         return webClient.get()

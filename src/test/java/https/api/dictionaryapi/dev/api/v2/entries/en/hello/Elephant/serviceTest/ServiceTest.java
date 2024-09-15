@@ -1,5 +1,6 @@
 package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.serviceTest;
 
+import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.repository.dto.ElephantResponse;
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.service.ElephantService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,8 +22,8 @@ public class ServiceTest {
         String expectedResult = "A person employed to perform computations; one who computes.";
 
         //when
-        String actualResult = elephantService.getDefinition(query);
+        ElephantResponse actualResult = elephantService.getDefinition(query);
         //then
-        assertEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult.getDefinitions().get(0).getDefinition());
     }
 }

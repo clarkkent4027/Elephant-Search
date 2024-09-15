@@ -13,6 +13,7 @@ import reactor.core.publisher.Mono;
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.repository.ElephantRepository;
 
 import java.net.URI;
+import java.util.List;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -67,10 +68,10 @@ public class ElephantRepositoryTest {
                 .thenReturn(elephantResponse);
 
         //when
-        String actualResult = elephantRepository.getDefinition(query);
+        List<Definition> actualResult = elephantRepository.getDefinition(query);
        // List<String> actualResults = Collections.singletonList(actualResult);
         //then
-        assertEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult.get(0).getDefinition());
         //given
         //when
         //then

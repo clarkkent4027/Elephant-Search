@@ -1,5 +1,6 @@
 package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.presentation;
 
+import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.repository.dto.ElephantResponse;
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.service.ElephantService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,8 +21,8 @@ public class ElephantController {
     }
 
     @GetMapping("/searchElephantResults")
-    public String getDefinition(@RequestParam(value="q") String query){
-       String results = elephantService.getDefinition(query);
+    public ElephantResponse getDefinition(@RequestParam(value="q") String query){
+       ElephantResponse results = elephantService.getDefinition(query);
         if(results == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "404 NOT_FOUND");
         }
