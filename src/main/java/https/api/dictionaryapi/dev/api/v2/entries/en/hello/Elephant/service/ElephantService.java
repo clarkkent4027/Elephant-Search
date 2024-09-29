@@ -12,11 +12,11 @@ public class ElephantService {
     ElephantRepository eRepository = new ElephantRepository();
 
 
-    public ElephantResponse getDefinition(String query){
+    public List<Definition> getDefinition(String query){
      ElephantResponse elephantResponse = new ElephantResponse();
         List<Definition> definition = eRepository.getDefinition(query);
         elephantResponse.setDefinitions(definition);
-        return elephantResponse;
+        return definition;
     }
 
 

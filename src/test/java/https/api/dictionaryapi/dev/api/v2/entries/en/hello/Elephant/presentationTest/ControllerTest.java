@@ -1,11 +1,15 @@
 package https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.presentationTest;
 
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.presentation.ElephantController;
+import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.repository.dto.Definition;
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.repository.dto.ElephantResponse;
 import https.api.dictionaryapi.dev.api.v2.entries.en.hello.Elephant.service.ElephantService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.reactive.function.client.WebClientResponseException.NotFound;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -29,9 +33,9 @@ public class ControllerTest {
         String expectedResult = "A person employed to perform computations; one who computes.";
 
         //when
-        ElephantResponse actualResult = elephantController.getDefinition(query);
+        List<Definition> actualResult = elephantController.getDefinition(query);
         //then
-        assertEquals(expectedResult, actualResult.getDefinitions().get(0).getDefinition());
+        assertEquals(expectedResult, actualResult.get(0).getDefinition());
     }
 
     @Test
